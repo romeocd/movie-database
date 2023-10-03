@@ -2,6 +2,7 @@
 var movieNameRef = document.getElementbyID("movie-name");
 var searchBtn = document.getElementById("search-btn");
 var result = document.getElementbyID("result");
+var key = "b56525c";
 
 //fetch data from api
 var getMovie = () => {
