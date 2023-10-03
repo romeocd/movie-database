@@ -5,19 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Guide and Review</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/style.css">
 
 </head>
 
 <body>
-    <h1>Search Movie Library
-    </h1>
-    <h2>Movies</h2>
-    <button>
-        Search
-    </button>
+    <div class="heading">
+        <h1>Movie Guide</h1>
+    </div>
+    <div class="container">
+        <div class="search-container">
+            <input type="text" id="movie-name" placeholder="Enter Movie Name Here..." value="Wednesday">
+            <button id="search-btn">Search</button>
+        </div>
+        <div id="result"></div>
+    </div>
 
-    <script src="./assets/css/style.css"></script>
+    <script src="./assets/script.js"></script>
 </body>
 
 </html>
