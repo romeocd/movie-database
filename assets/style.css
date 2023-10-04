@@ -6,11 +6,13 @@
 }
 
 body {
-    background-color:darkcyan
+    background-color:white
 }
 
+
+
 .container {
-    background-color:white;
+    background-color:black;
     width: 80%;
     max-width: 600px;
     margin: 50px auto 0;
@@ -20,5 +22,12 @@ body {
 
 .heading {
     width: 80%;
+    max-width: 400px;
+    margin: 50px auto 0;
+    border-radius: 10px;
+    padding: 40px;
 }
 
+.thestar {
+    width: 100px;
+}
