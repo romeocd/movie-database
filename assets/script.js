@@ -5,20 +5,22 @@ var result = document.getElementById("result");
 var key = "b56525c";
 
 //fetch data from api
-var getMovie = () => {
+var getMovie = function () {
     var movieName = movieNameRef.value;
-    var url = `http://omdbapi.com/?t=${movieName}&apikey=${key}`;
+    var apiUrl = `http://www.omdbapi.com/?t=${movieName}&apikey=${key}`;
 
     //if input field is empty
-    if(movieName.length <=0) {
-        result.innerHTML = `<h4 class ="msg">Enter A Movie Name </h4>`;
+    if(movieName.length <= 0) {
+        result.innerHTML = `<h3 class ="msg">Enter A Movie Name </h3>`;
     } 
 
     //if input field is not empty
     else {
-        fetch(url)
+        fetch(apiUrl)
         .then((resp) => resp.json())
         .then((data) => {
+
+            
                 //if movie exists in database
                 if(data.response == 'True'){
 
@@ -28,7 +30,7 @@ var getMovie = () => {
                     <div>
                         <h2>${data.Title}</h2>
                         <div class="rating">
-                            <img src="star-icon.svg">
+                            
                             <h4>${data.imdbRating}</h4>
                         </div>
                         <div class="details">
@@ -36,10 +38,9 @@ var getMovie = () => {
                             <span>${data.Year}</span>
                             <span>${data.Runtime}</span>
                         </div>
-
                         <div class="genre">
                             <div>${data.Genre.split(",").
-                            join("<div></div>")}</div>
+                            join("</div><div>")}</div>
                         </div>
                     </div>
                 </div>
@@ -55,6 +56,7 @@ var getMovie = () => {
                 result.innerHTML=`<h3 class='msg'>${data.Error}</h3>`;
             }
         })
+            //if error occurs
         .catch(() => {
             result.innerHTML=`<h3 class="msg">Error Occured </h3>`;
         });
