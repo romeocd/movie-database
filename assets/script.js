@@ -50,9 +50,9 @@ function displayMovieInfo(data) {
                 </div>
             </div>
         </div>
-        <h3>Plot:</h3>
+        <h3 class="plot">Plot:</h3>
         <p>${data.Plot}</p>
-        <h3>Cast:</h3>
+        <h3 class="cast">Cast:</h3>
         <p>${data.Actors}</p>
     `;
 }
