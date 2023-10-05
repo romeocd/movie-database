@@ -6,7 +6,10 @@
 }
 
 body {
-    background-color:white
+    background: linear-gradient(to bottom, white, black);
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
 
