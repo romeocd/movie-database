@@ -9,8 +9,6 @@ body {
     background-color:white
 }
 
-
-
 .container {
     background-color:black;
     width: 80%;
@@ -20,6 +18,9 @@ body {
     padding: 20px;
 }
 
+#result{
+    
+}
 .heading {
     width: 80%;
     max-width: 400px;
