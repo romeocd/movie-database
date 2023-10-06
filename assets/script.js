@@ -6,62 +6,57 @@ var key = "b56525c";
 
 //fetch data from api
 var getMovie = function () {
-    var movieName = movieNameRef.value;
-    var apiUrl = `http://www.omdbapi.com/?t=${movieName}&apikey=${key}`;
+    var movieName = movieNameRef.value.trim(); // Trim whitespace
 
-    //if input field is empty
-    if(movieName.length <= 0) {
-        result.innerHTML = `<h3 class ="msg">Enter A Movie Name </h3>`;
-    } 
+    // Check for empty input
+    if (movieName.length <= 0) {
+        result.innerHTML = `<h3 class="msg">Enter a Movie Name</h3>`;
+        return; // Exit the function early
+    }
 
-    //if input field is not empty
-    else {
-        fetch(apiUrl)
+    var apiUrl = `https://www.omdbapi.com/?t=${encodeURIComponent(movieName)}&apikey=${key}`;
+
+    fetch(apiUrl)
         .then((resp) => resp.json())
         .then((data) => {
-
-            
-                //if movie exists in database
-                if(data.response == 'True'){
-
-            result.innerHTML = `
-                <div class="info">
-                    <img src=${data.Poster} class="poster">
-                    <div>
-                        <h2>${data.Title}</h2>
-                        <div class="rating">
-                            
-                            <h4>${data.imdbRating}</h4>
-                        </div>
-                        <div class="details">
-                            <span>${data.Rated}</span>
-                            <span>${data.Year}</span>
-                            <span>${data.Runtime}</span>
-                        </div>
-                        <div class="genre">
-                            <div>${data.Genre.split(",").
-                            join("</div><div>")}</div>
-                        </div>
-                    </div>
-                </div>
-                <h3>Plot:</h3>
-                <p>${data.Plot}</p>
-                <h3>Cast:</h3>
-                <p>${data.Actors}</p>
-            `;
-            }
-
-            //if movie does not exist in database
-            else {
-                result.innerHTML=`<h3 class='msg'>${data.Error}</h3>`;
+            if (data.Response === 'True') {
+                displayMovieInfo(data);
+            } else {
+                result.innerHTML = `<h3 class='msg'>${data.Error}</h3>`;
             }
         })
-            //if error occurs
-        .catch(() => {
-            result.innerHTML=`<h3 class="msg">Error Occured </h3>`;
+        .catch((error) => {
+            console.error('Error:', error);
+            result.innerHTML = `<h3 class="msg">Error Occurred</h3>`;
         });
-    }
 };
+
+function displayMovieInfo(data) {
+    result.innerHTML = `
+        <div class="info">
+            <img src=${data.Poster} class="poster">
+            <div>
+                <h2>${data.Title}</h2>
+                <div class="rating">
+                    <h4>${data.imdbRating}</h4>
+                </div>
+                <div class="details">
+                    <span>${data.Rated}</span>
+                    <span>${data.Year}</span>
+                    <span>${data.Runtime}</span>
+                </div>
+                <div class="genre">
+                    <div>${data.Genre.split(",").join("</div><div>")}</div>
+                </div>
+            </div>
+        </div>
+        <h3 class="plot">Plot:</h3>
+        <p>${data.Plot}</p>
+        <h3 class="cast">Cast:</h3>
+        <p>${data.Actors}</p>
+    `;
+}
+
 
 searchBtn.addEventListener("click", getMovie);
 window.addEventListener("load", getMovie);
