@@ -4,6 +4,8 @@ var searchBtn = document.getElementById("search-btn");
 var result = document.getElementById("result");
 var key = "b56525c";
 
+var movieNameInput = document.getElementById('movie-name');
+
 //fetch data from api
 var getMovie = function () {
     var movieName = movieNameRef.value.trim(); // Trim whitespace
@@ -57,6 +59,15 @@ function displayMovieInfo(data) {
     `;
 }
 
+// Function to run the getMovie function when Enter key is pressed
+function runGetMovieOnEnter(event) {
+    if (event.key === 'Enter') {
+        getMovie();
+    }
+}
+
 
 searchBtn.addEventListener("click", getMovie);
 window.addEventListener("load", getMovie);
+// Add an event listener to the input field to listen for Enter key press
+movieNameInput.addEventListener('keydown', runGetMovieOnEnter);
