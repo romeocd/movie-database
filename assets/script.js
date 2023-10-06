@@ -92,5 +92,5 @@ document.getElementById('searchReviewsButton').addEventListener('click', functio
         })
         .catch(error => {
             console.error('Error fetching data:', error);
-        });
+        }); 
 }); 
