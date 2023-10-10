@@ -6,22 +6,26 @@
 }
 
 body {
-    background: linear-gradient(to bottom, white, black);
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+  height: 100vh;
+  background: linear-gradient(white 50%, blue 50%);
+
+  font-family: Arial, sans-serif;
 }
-
-
 
 .container {
-    background-color:black;
-    width: 80%;
-    max-width: 600px;
-    margin: 50px auto 0;
-    border-radius: 10px;
-    padding: 20px;
+  background-color: black;
+  width: 80%;
+  max-width: 600px;
+  margin: 50px auto 0;
+  border-radius: 10px;
+  padding: 20px;
 }
+/* Styles for smaller screens (e.g., mobile devices) */
+@media (max-width: 768px) {
+  .container {
+      width: 90%; /* Adjust the width for smaller screens */
+      padding: 10px; /* Reduce padding for smaller screens */
+  }}
 
 .heading {
     width: 80%;
@@ -34,3 +38,60 @@ body {
 .thestar {
     width: 100px;
 }
+
+/* Style for the movie information */
+.info {
+    
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  h2{
+    text-align: center;
+    color: white;
+  }
+  .poster {
+    max-width: 150px;
+    margin-right: 20px;
+  }
+  
+  .rating{
+    color: white;
+  }
+  .details {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .genre {
+    margin-top: 10px;
+  }
+  
+  .genre div {
+    display: inline-block;
+    margin-right: 5px;
+    background-color: #ccc;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+  
+  /* Style for plot and cast sections */
+  h3 {
+    font-size: 18px;
+    margin-top: 20px;
+    color: white;
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 1.4;
+    color: white;
+  }
+  
+  /* Style for error message */
+  .msg {
+    color: red;
+    font-weight: bold;
+  }
