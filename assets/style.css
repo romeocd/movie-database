@@ -6,7 +6,9 @@
 }
 
 body {
-    background-color:white
+  height: 100vh;
+  background: linear-gradient(white 50%, blue 50%);
+  font-family: Arial, sans-serif;
 }
 
 .container {
@@ -85,6 +87,7 @@ body {
   .msg {
     color: red;
     font-weight: bold;
+    text-align: center;
   }
 
   /* style for rotten api */
@@ -110,11 +113,71 @@ body {
   button:hover {
     background-color: #005691;
   }
-  #reviewsContainer {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
+
+
+  .trending-titles {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.trending-titles li {
+    margin-bottom: 5px;
+    color: white;
+}
+
+/* Style for the trending movies table */
+
+.trending-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.trending-table th,
+.trending-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+  background-color: #f2f2f2; /* Set a background color for all rows */
+}
+
+.trending-table th {
+  background-color: #f2f2f2;
+}
+
+/* Remove alternating row background colors */
+.trending-table tbody tr {
+  background-color: #f2f2f2;
+}
+
+.trending-table tbody tr:hover {
+  background-color: #ddd;
+}
+/* Style for the search container */
+.search-container {
+  text-align: center; /* Center align its children horizontally */
+  margin-top: 20px; /* Adjust the top margin as needed */
+}
+
+/* Style for the search input */
+#movie-name {
+  font-size: 18px; /* Increase the font size to match the trending table */
+  padding: 10px; /* Adjust padding as needed */
+}
+
+/* Style for the search button */
+#search-btn {
+  font-size: 18px; /* Increase the font size to match the trending table */
+  padding: 10px 20px; /* Adjust padding as needed */
+  background-color: #0077B6;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#search-btn:hover {
+  background-color: #005691;
+}

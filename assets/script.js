@@ -3,10 +3,10 @@ var movieNameRef = document.getElementById("movie-name");
 var searchBtn = document.getElementById("search-btn");
 var result = document.getElementById("result");
 var key = "b56525c";
-var movieName;
+
 var movieNameInput = document.getElementById('movie-name');
 
-//fetch data from api
+//fetch data from omdb api
 var getMovie = function () {
     var movieName = movieNameRef.value.trim(); // Trim whitespace
 
@@ -71,22 +71,73 @@ searchBtn.addEventListener("click", getMovie);
 window.addEventListener("load", getMovie);
 // Add an event listener to the input field to listen for Enter key press
 movieNameInput.addEventListener('keydown', runGetMovieOnEnter);
-// code for rotten tomatoes api
-document.getElementById('searchReviewsButton').addEventListener('click', function () {
-    // Rotten api key
-    const apiKey = 'https://rotten-tomatoes-api.ue.r.appspot.com';
-    // Define the URL for the Rotten Tomatoes API
-    const apiUrl = `https://rotten-tomatoes-api.ue.r.appspot.com/movie/${movieName}`;
-    // Make a GET request to the Rotten Tomatoes API
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            // Handle the API response data here
-            // For example, you can display the reviews in a div
-            const reviewsContainer = document.getElementById('reviewsContainer');
-            reviewsContainer.innerHTML = JSON.stringify(data, null, 2);
+
+
+
+
+var trendingBtn = document.getElementById("trending-btn");
+
+const url = 'https://movies-tv-shows-database.p.rapidapi.com/?page=1';
+const options = {
+	method: 'GET',
+	headers: {
+		Type: 'get-trending-movies',
+		'X-RapidAPI-Key': '21bae2644cmsh8bd4b10695cbaaap1a58d9jsncc0ed5c6c26d',
+		'X-RapidAPI-Host': 'movies-tv-shows-database.p.rapidapi.com'
+	}
+};
+
+var getTrending = function () {
+    fetch(url, options)
+        .then((resp) => resp.json())
+        .then((data) => {
+            
+            // Check if there are movie results
+            if (Array.isArray(data.movie_results)) {
+                // Create an HTML table to display titles and release dates
+                const table = document.createElement('table');
+                table.classList.add('trending-table');
+
+                // Create table header
+                const tableHeader = document.createElement('thead');
+                tableHeader.innerHTML = `
+                    <tr>
+                        <th>Title</th>
+                        <th>Release Date</th>
+                    </tr>
+                `;
+                table.appendChild(tableHeader);
+
+                // Create table body
+                const tableBody = document.createElement('tbody');
+
+                // Populate the table with movie titles and release dates
+                data.movie_results.forEach((movie) => {
+                    const row = document.createElement('tr');
+                    const titleCell = document.createElement('td');
+                    const releaseDateCell = document.createElement('td');
+
+                    titleCell.textContent = movie.title;
+                    releaseDateCell.textContent = movie.year;
+
+                    row.appendChild(titleCell);
+                    row.appendChild(releaseDateCell);
+                    tableBody.appendChild(row);
+                });
+
+                table.appendChild(tableBody);
+
+                // Clear any previous content and append the table to the result section
+                result.innerHTML = '';
+                result.appendChild(table);
+            } else {
+                result.innerHTML = `<h3 class='msg'>No trending movies found.</h3>`;
+            }
         })
-        .catch(error => {
-            console.error('Error fetching data:', error);
+        .catch((error) => {
+            console.error('Error:', error);
+            result.innerHTML = `<h3 class="msg">Error Occurred</h3>`;
         });
-});
+};
+
+trendingBtn.addEventListener("click", getTrending);
