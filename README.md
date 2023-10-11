@@ -14,3 +14,7 @@ The trending moves are presented using Movies Tv Shows Database API with their r
 
 ## Screenshot
 ![Alt text](image-1.png)
+
+##Deployed URL
+https://romeocd.github.io/movie-database/
+
